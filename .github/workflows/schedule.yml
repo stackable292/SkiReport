@@ -17,6 +17,9 @@ jobs:
         with:
           python-version: 3.8
 
+       - name: List installed packages
+        run: pip list
+      
       - name: Run a_basin.py
         run: python a_basin.py
 
