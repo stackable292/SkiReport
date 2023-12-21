@@ -1,3 +1,27 @@
+name: Winter Park Report
+
 on:
   schedule:
-    - cron: '20 * * * *'  # Set your desired schedule (every day at 12:00 PM UTC in this example)
+    - cron: '*/15 * * * *'  # Set your desired schedule for every 15 minutes
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.8  # You can adjust the Python version as needed
+
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt  # If you have a requirements.txt file
+
+    - name: Run Python Script
+      run: python winterpark_report.py
+      env:
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
