@@ -37,9 +37,9 @@ def send_report_to_discord(webhook_url, report):
 
 if __name__ == "__main__":
     # Replace this with your Discord webhook URL
-    discord_webhook_url = "https://discord.com/api/webhooks/your_webhook_id/your_webhook_token"
+    discord_webhook_url = "https://discord.com/api/webhooks/1187184664138489856/2AhHO2fdZdcTsEBk7KXJxLSJfWIsrEVmxtHBoqvP3FHNCppe3N0PzPprNRn0d3odVKMW"
 
     winter_park_report = get_winter_park_conditions()
 
     # Send the report to Discord
-    send_report_to_discord(https://discord.com/api/webhooks/1187184664138489856/2AhHO2fdZdcTsEBk7KXJxLSJfWIsrEVmxtHBoqvP3FHNCppe3N0PzPprNRn0d3odVKMW, winter_park_report)
+    send_report_to_discord(discord_webhook_url, winter_park_report)
