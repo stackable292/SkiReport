@@ -16,10 +16,9 @@ def get_winter_park_conditions():
         # Extract relevant information
         open_trails = extract_statistic(soup, 'Open Trails')
         open_lifts = extract_statistic(soup, 'Open Lifts')
-        mountain_activities = extract_statistic(soup, 'Mountain Activities')
         open_terrain = extract_statistic(soup, 'Open Terrain')
 
-        return f"Open Trails: {open_trails}, Open Lifts: {open_lifts}, Mountain Activities: {mountain_activities}, Open Terrain: {open_terrain}"
+        return f"Open Trails: {open_trails}, Open Lifts: {open_lifts}, Open Terrain: {open_terrain}"
     else:
         return f"Failed to retrieve Winter Park conditions. Status code: {response.status_code}"
 
