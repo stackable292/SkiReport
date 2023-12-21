@@ -1,27 +1,36 @@
-name: Winter Park Report
+name: Run Python scripts every 5 minutes
 
 on:
   schedule:
-    - cron: '*/2 * * * *'  # Set your desired schedule for every 15 minutes
+    - cron: '*/5 * * * *'
 
 jobs:
-  run_script:
+  run_scripts:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: 3.8  # You can adjust the Python version as needed
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
 
-    - name: Install Dependencies
-      run: |
-        pip install -r requirements.txt  # If you have a requirements.txt file
+      - name: Run a_basin.py
+        run: python a_basin.py
 
-    - name: Run Python Script
-      run: python winterpark_report.py
-      env:
-        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      - name: Run copper.py
+        run: python copper.py
+
+      - name: Run Breckenridge.py
+        run: python Breckenridge.py
+
+      - name: Run Keystone.py
+        run: python Keystone.py
+
+      - name: Run steamboat.py
+        run: python steamboat.py
+
+      - name: Run winter_park.py
+        run: python winter_park.py
