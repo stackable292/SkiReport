@@ -2,7 +2,7 @@ name: Winter Park Report
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # Set your desired schedule for every 15 minutes
+    - cron: '*/2 * * * *'  # Set your desired schedule for every 15 minutes
 
 jobs:
   run_script:
