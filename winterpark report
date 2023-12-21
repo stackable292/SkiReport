@@ -1,0 +1,45 @@
+import requests
+from bs4 import BeautifulSoup
+
+def get_winter_park_conditions():
+    # Replace this URL with the actual Winter Park Ski Resort conditions URL
+    url = "https://www.winterparkresort.com/the-mountain/mountain-report"
+
+    # Send a GET request to the URL
+    response = requests.get(url)
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        # Use BeautifulSoup to parse the HTML content
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        # Extract relevant information (replace this with the actual HTML structure)
+        condition_element = soup.find('span', {'class': 'condition'})
+        temperature_element = soup.find('span', {'class': 'temperature'})
+
+        condition = condition_element.text.strip() if condition_element else 'N/A'
+        temperature = temperature_element.text.strip() if temperature_element else 'N/A'
+
+        return f"Current conditions: {condition}, Temperature: {temperature}"
+    else:
+        return f"Failed to retrieve Winter Park conditions. Status code: {response.status_code}"
+
+def send_report_to_discord(webhook_url, report):
+    data = {
+        "content": report
+    }
+    response = requests.post(webhook_url, json=data)
+
+    if response.status_code == 204:
+        print("Report sent to Discord successfully!")
+    else:
+        print(f"Failed to send report to Discord. Status code: {response.status_code}")
+
+if __name__ == "__main__":
+    # Replace this with your Discord webhook URL
+    discord_webhook_url = "https://discord.com/api/webhooks/your_webhook_id/your_webhook_token"
+
+    winter_park_report = get_winter_park_conditions()
+
+    # Send the report to Discord
+    send_report_to_discord(https://discord.com/api/webhooks/1187184664138489856/2AhHO2fdZdcTsEBk7KXJxLSJfWIsrEVmxtHBoqvP3FHNCppe3N0PzPprNRn0d3odVKMW, winter_park_report)
