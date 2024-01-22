@@ -1,4 +1,4 @@
-name: Run Copper Script
+name: SkiBot Schedule
 
 on:
   schedule:
