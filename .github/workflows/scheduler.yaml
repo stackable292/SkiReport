@@ -1,4 +1,4 @@
-name: Minute Python Script
+name: Run Copper Script
 
 on:
   schedule:
@@ -17,6 +17,11 @@ jobs:
       with:
         python-version: '3.12'  # Choose your Python version
 
-    - name: Run Python Script
+    - name: Use Node.js 16
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Specify Node.js version 16
+
+    - name: Run Copper Script
       run: |
-        copper.py
+        python copper.py
