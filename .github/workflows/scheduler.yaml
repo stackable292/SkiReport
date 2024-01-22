@@ -1,0 +1,22 @@
+name: Minute Python Script
+
+on:
+  schedule:
+    - cron: '* * * * *'  # Run every minute
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'  # Choose your Python version
+
+    - name: Run Python Script
+      run: |
+        a_basin.py
