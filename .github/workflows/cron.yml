@@ -10,12 +10,12 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2.5.1  # Use the latest version
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v2.7.1  # Use the latest version
       with:
-        python-version: '3.x'  # Choose your Python version
+        python-version: '3.12'  # Choose your Python version
 
     - name: Install Dependencies
       run: |
