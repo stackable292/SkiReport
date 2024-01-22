@@ -1,4 +1,4 @@
-name: SkiBot Scheduler
+name: SkiBot
 
 on:
   schedule:
@@ -22,6 +22,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests selenium beautifulsoup4
 
-    - name: Run Copper Script
+    - name: Run SkiBot Script
       run: |
         python copper.py
