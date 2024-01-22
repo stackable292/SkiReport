@@ -24,4 +24,4 @@ jobs:
 
     - name: Run Copper Script
       run: |
-        python copper.py
+         /usr/bin/python3 copper.py
