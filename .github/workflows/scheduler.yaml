@@ -19,4 +19,4 @@ jobs:
 
     - name: Run Python Script
       run: |
-        a_basin.py
+        copper.py
