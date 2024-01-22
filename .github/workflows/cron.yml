@@ -22,6 +22,10 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install requests selenium beautifulsoup4
 
+    - name: Print Installed Packages
+      run: |
+        python -m pip list
+
     - name: Run SkiBot Script
       run: |
         python copper.py
