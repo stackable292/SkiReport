@@ -2,7 +2,7 @@ name: SkiBot
 
 on:
   schedule:
-    - cron: '* * * * *'  # Run every minute
+    - cron: '*/1 * * * *'  # Run every minute
 
 jobs:
   run-script:
