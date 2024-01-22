@@ -10,17 +10,21 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v2.5.1
+      uses: actions/checkout@v2  # Use the latest version in the v2 major version
 
     - name: Set up Python
-      uses: actions/setup-python@v2.7.1
+      uses: actions/setup-python@v2  # Use the latest version in the v2 major version
       with:
-        python-version: '3.x'
+        python-version: '3'
 
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install requests selenium beautifulsoup4
+
+    - name: Print Installed Packages
+      run: |
+        python -m pip list
 
     - name: Run SkiBot Script
       run: |
