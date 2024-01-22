@@ -1,61 +1,73 @@
 import requests
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 
-def get_Arapahoe_Basin_conditions():
-    # Replace this URL with the actual Arapahoe Basin conditions URL
-    url = "https://www.arapahoebasin.com/snow-report"
+def get_copper_mountain_conditions():
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # Run Chrome in headless mode (no GUI)
+    driver = webdriver.Chrome(options=chrome_options)
 
-    # Send a GET request to the URL
-    response = requests.get(url)
+    # Replace this URL with the actual Copper Mountain conditions URL
+    url = "https://www.coppercolorado.com/the-mountain/conditions-weather/snow-report"
+    driver.get(url)
 
-    # Check if the request was successful (status code 200)
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.content, 'html.parser')
+    # Wait for the page to load (adjust the sleep time if needed)
+    driver.implicitly_wait(1)
 
-        open_runs = extract_statistic(soup, 'Open Runs')
-        open_lifts = extract_statistic(soup, 'Open Lifts')
+    # Get the page source after JavaScript execution
+    page_source = driver.page_source
 
-        return f"**Arapahoe Basin Report**:\nOpen Runs: {open_runs}\nOpen Lifts: {open_lifts}"
-    else:
-        return f"Failed to retrieve ski conditions. Status code: {response.status_code}"
+    soup = BeautifulSoup(page_source, 'html.parser')
 
-def extract_statistic(soup, label):
-    # Find the p element inside the div with the specified label
-    p_element = soup.find('p', string=label)
+    # Find the elements containing the values
+    open_trails_element = soup.find('h3', string='Open Trails')
+    open_lifts_element = soup.find('h3', string='Open Lifts')
 
-    if p_element:
-        # Find the previous sibling which contains the information
-        info_element = p_element.find_previous_sibling('h5')
+    # Extract the values
+    open_trails_value = extract_value(open_trails_element)
+    open_lifts_value = extract_value(open_lifts_element)
 
-        if info_element:
-            # Replace '/' with ' of '
-            info_text = info_element.get_text(strip=True).replace('/', ' of ')
-            return info_text
+    # Define total values
+    total_trails = '157'
+    total_lifts = '23'
 
-    return f"{label}: N/A"
+    driver.quit()
+
+    # Format the results and label the report
+    copper_mountain_report = (
+        f"**Copper Mountain Report**\n"
+        f"Open Trails: {open_trails_value} of {total_trails}\n"
+        f"Open Lifts: {open_lifts_value} of {total_lifts}"
+    )
+
+    return copper_mountain_report
+
+def extract_value(element):
+    if element:
+        # Find the parent li element and extract the text from there
+        parent_li = element.find_parent('li', class_='animated')
+        if parent_li:
+            return parent_li.find_next('text').text.strip()
+    return 'N/A'
 
 def send_report_to_discord(webhook_url, report):
-    # Create a dictionary with the message content
     data = {
         'content': report
     }
 
-    # Make a POST request to the Discord webhook URL
     response = requests.post(webhook_url, json=data)
 
-    # Check if the request was successful (status code 200)
-    if response.status_code == 200:
+    if response.status_code == 204:
         print("Report sent to Discord successfully")
     else:
         print(f"Failed to send report to Discord. Status code: {response.status_code}")
 
 if __name__ == "__main__":
-    # Replace this with your Discord webhook URL
     discord_webhook_url = "https://discord.com/api/webhooks/1187184664138489856/2AhHO2fdZdcTsEBk7KXJxLSJfWIsrEVmxtHBoqvP3FHNCppe3N0PzPprNRn0d3odVKMW"
 
-    Arapahoe_Basin_report = get_Arapahoe_Basin_conditions()
+    copper_mountain_report = get_copper_mountain_conditions()
 
-    # Send the report to Discord
-    send_report_to_discord(discord_webhook_url, Arapahoe_Basin_report)
+    send_report_to_discord(discord_webhook_url, copper_mountain_report)
 
-    print(Arapahoe_Basin_report)
+    print(copper_mountain_report)
