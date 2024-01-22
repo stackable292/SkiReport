@@ -32,4 +32,4 @@ jobs:
         
     - name: Run Breckenridge Script
       run: |
-        python breckenridge.py
+        python Breckenridge.py
