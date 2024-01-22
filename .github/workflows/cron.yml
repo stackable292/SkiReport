@@ -26,6 +26,10 @@ jobs:
       run: |
         python -m pip list
 
-    - name: Run SkiBot Script
+    - name: Run Copper Script
       run: |
         python copper.py
+        
+    - name: Run Breckenridge Script
+      run: |
+        python breckenridge.py
