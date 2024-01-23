@@ -29,7 +29,3 @@ jobs:
     - name: Run Copper Script
       run: |
         python copper.py
-        
-    - name: Run Breckenridge Script
-      run: |
-        python Breckenridge.py
