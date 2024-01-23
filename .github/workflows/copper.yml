@@ -28,4 +28,4 @@ jobs:
 
     - name: Run Copper Script
       run: |
-        python copper.py
+        python Copper.py
