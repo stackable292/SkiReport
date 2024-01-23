@@ -28,7 +28,7 @@ def get_steamboat_conditions():
         total_lifts = 23  # Static value
 
         steamboat_report = (
-            f"Steamboat Report:\n"
+            f"**Steamboat Report**:\n"
             f"Open Trails: {open_trails.replace('/', ' of ')} / {total_trails}\n"
             f"Open Lifts: {open_lifts.replace('/', ' of ')} / {total_lifts}"
         )
