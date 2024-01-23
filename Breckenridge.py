@@ -11,7 +11,7 @@ def get_Breckenridge_conditions():
     if response.status_code == 200:
         response.html.render()
 
-        breckenridge_report = "Breckenridge\n"
+        breckenridge_report = "**Breckenridge**\n"
 
         lift_info = response.html.find('.terrain_summary__tab_main__text:contains("Lifts Open")', first=True)
         if lift_info:
