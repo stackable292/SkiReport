@@ -75,7 +75,7 @@ if __name__ == "__main__":
 
     # Format the report without "CO Snow Report," "Mountain Activities," and "Open Terrain"
     # Display "Winter Park" above the results without an extra line
-    formatted_report = f"Winter Park\n{'\n'.join(winter_park_report)}"
+    formatted_report = f"**Winter Park**\n{'\n'.join(winter_park_report)}"
     print(formatted_report)
 
     send_report_to_discord(discord_webhook_url, formatted_report)
