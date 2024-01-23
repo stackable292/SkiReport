@@ -1,4 +1,4 @@
-name: SkiBot
+name: ProdTest
 
 on:
   schedule:
