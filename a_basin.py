@@ -15,7 +15,7 @@ def get_Arapahoe_Basin_conditions():
         open_runs = extract_statistic(soup, 'Open Runs')
         open_lifts = extract_statistic(soup, 'Open Lifts')
 
-        return f"Arapahoe Basin Report:\nOpen Runs: {open_runs}\nOpen Lifts: {open_lifts}"
+        return f"**Arapahoe Basin** Report:\nOpen Runs: {open_runs}\nOpen Lifts: {open_lifts}"
     else:
         return f"Failed to retrieve ski conditions. Status code: {response.status_code}"
 
