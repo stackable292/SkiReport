@@ -11,7 +11,7 @@ def get_keystone_conditions():
         # Render the page to execute JavaScript
         response.html.render()
 
-        keystone_report = "Keystone\n"
+        keystone_report = "**Keystone**\n"
 
         # Extract lift information
         lift_info = response.html.find('.terrain_summary__tab_main__text:contains("Lifts Open")', first=True)
