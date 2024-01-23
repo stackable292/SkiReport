@@ -2,7 +2,7 @@ name: ProdTest
 
 on:
   schedule:
-    - cron: '0 14 * * *'  # run at 1400 UTC 
+    - cron: '10 14 * * *'  # run at 1410 UTC 
 
 jobs:
   run-script:
@@ -28,4 +28,4 @@ jobs:
 
     - name: Run Copper Script
       run: |
-        python copper.py
+        python Copper.py
