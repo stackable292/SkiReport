@@ -2,7 +2,7 @@ name: ProdTest
 
 on:
   schedule:
-    - cron: '00 15 * * *'  # run at 0800 mst 
+    - cron: '02 16 * * *'  # run at 0800 mst 
 
 jobs:
   run-script:
