@@ -29,3 +29,7 @@ jobs:
     - name: Run Copper Script
       run: |
         python Copper.py
+
+    - name: Run steamboat Script
+      run: |
+        python steamboat.py
