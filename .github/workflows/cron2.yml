@@ -2,7 +2,7 @@ name: ProdTest
 
 on:
   schedule:
-    - cron: '02 16 * * *'  # run at 0800 mst 
+    - cron: '45 16 * * *'  # run at 0800 mst 
 
 jobs:
   run-script:
@@ -26,10 +26,26 @@ jobs:
       run: |
         python -m pip list
 
+    - name: Run Breckenridge Script
+      run: |
+        python Breckenridge.py
+
     - name: Run Copper Script
       run: |
         python Copper.py
 
+    - name: Run Keystone Script
+      run: |
+        python Keystone.py
+
+    - name: Run a_basin Script
+      run: |
+        python a_basin.py
+
     - name: Run steamboat Script
       run: |
         python steamboat.py
+
+    - name: Run winter_park Script
+      run: |
+        python winter_park.py
