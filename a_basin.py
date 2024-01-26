@@ -51,7 +51,7 @@ def send_report_to_discord(webhook_url, report):
 
 if __name__ == "__main__":
     # Replace this with your Discord webhook URL
-    discord_webhook_url = "https://discord.com/api/webhooks/1187184664138489856/2AhHO2fdZdcTsEBk7KXJxLSJfWIsrEVmxtHBoqvP3FHNCppe3N0PzPprNRn0d3odVKMW"
+    discord_webhook_url = "https://discord.com/api/webhooks/1200292789766852638/SL1xXcVP_PJ8UgTpyVvxgOFN0Zbj8H4sroKOoW5sjWdZqGwaswmsK2-iF5oPvoSkRzQX"
 
     Arapahoe_Basin_report = get_Arapahoe_Basin_conditions()
 
