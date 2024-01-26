@@ -11,14 +11,7 @@ def get_keystone_conditions():
         # Render the page to execute JavaScript
         response.html.render()
 
-        keystone_report = "**Keystone**\n"
-
-        # Extract lift information
-        lift_info = response.html.find('.terrain_summary__tab_main__text:contains("Lifts Open")', first=True)
-        if lift_info:
-            lifts_open = lift_info.find('.c118__number1--v1', first=True)
-            total_lifts = lift_info.find('.c118__number2--v1', first=True)
-            keystone_report += f"Open Lifts: {lifts_open.text} of {total_lifts.text.replace('/', '')}\n"
+        keystone_report = "**Keystone Report**\n"
 
         # Extract trail information
         trail_info = response.html.find('.terrain_summary__tab_main__text:contains("trails Open")', first=True)
@@ -27,6 +20,14 @@ def get_keystone_conditions():
             total_trails = trail_info.find('.c118__number2--v1', first=True)
             keystone_report += f"Open Trails: {trails_open.text} of {total_trails.text.replace('/', '')}\n"
 
+        # Extract lift information
+        lift_info = response.html.find('.terrain_summary__tab_main__text:contains("Lifts Open")', first=True)
+        if lift_info:
+            lifts_open = lift_info.find('.c118__number1--v1', first=True)
+            total_lifts = lift_info.find('.c118__number2--v1', first=True)
+            keystone_report += f"Open Lifts: {lifts_open.text} of {total_lifts.text.replace('/', '')}\n"
+
+       
         if not lift_info and not trail_info:
             keystone_report += "No information found on the page."
 
