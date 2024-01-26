@@ -11,7 +11,13 @@ def get_Breckenridge_conditions():
     if response.status_code == 200:
         response.html.render()
 
-        breckenridge_report = "**Breckenridge**\n"
+        breckenridge_report = "**Breckenridge Report**\n"
+
+        trail_info = response.html.find('.terrain_summary__tab_main__text:contains("trails Open")', first=True)
+        if trail_info:
+            trails_open = trail_info.find('.c118__number1--v1', first=True)
+            total_trails = trail_info.find('.c118__number2--v1', first=True)
+            breckenridge_report += f"Open Trails: {trails_open.text} of {total_trails.text.replace('/', '')}\n"
 
         lift_info = response.html.find('.terrain_summary__tab_main__text:contains("Lifts Open")', first=True)
         if lift_info:
@@ -19,11 +25,7 @@ def get_Breckenridge_conditions():
             total_lifts = lift_info.find('.c118__number2--v1', first=True)
             breckenridge_report += f"Open Lifts: {lifts_open.text} of {total_lifts.text.replace('/', '')}\n"
 
-        trail_info = response.html.find('.terrain_summary__tab_main__text:contains("trails Open")', first=True)
-        if trail_info:
-            trails_open = trail_info.find('.c118__number1--v1', first=True)
-            total_trails = trail_info.find('.c118__number2--v1', first=True)
-            breckenridge_report += f"Open Trails: {trails_open.text} of {total_trails.text.replace('/', '')}\n"
+        
 
         if not lift_info and not trail_info:
             breckenridge_report += "No information found on the page."
