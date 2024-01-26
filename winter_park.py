@@ -40,6 +40,10 @@ def extract_statistics(html):
         # Find all 'li' elements within the stats list excluding "Mountain Activities" and "Open Terrain"
         stat_items = [item for item in stats_list.find_all('li', class_='StatsWidget_statItem__yJzYz') if 'Mountain Activities' not in item.text and 'Open Terrain' not in item.text]
 
+        # Static total counts
+        static_total_trails = 171
+        static_total_lifts = 24
+
         # Initialize a list to store formatted statistics
         formatted_statistics = []
 
@@ -48,13 +52,25 @@ def extract_statistics(html):
             label = item.find('h6').text.strip()
             statistic = item.find('span', class_='StatsWidget_statBig__JTduy').text.strip()
 
-            # Format the statistic and add it to the list
-            formatted_statistic = f"{label}: {statistic}"
-            formatted_statistics.append(formatted_statistic)
+            if label == 'Open Trails':
+                formatted_statistics.append(f"{label}: {statistic} of {static_total_trails}")
+            elif label == 'Open Lifts':
+                formatted_statistics.append(f"{label}: {statistic} of {static_total_lifts}")
+            else:
+                formatted_statistics.append(f"{label}: {statistic}")
+
+        # Additional search for "Last 24 Hour"
+        last_24_hours_element = soup.find('p', class_='LabeledItem_component__hgsZz', string='Last 24 Hour:')
+        if last_24_hours_element:
+            last_24_hours_statistic = last_24_hours_element.find('strong').text.strip()
+            formatted_statistics.append(f"Last 24 Hours: {last_24_hours_statistic}")
 
         return formatted_statistics
     else:
         return []
+
+# Rest of the code remains unchanged
+
 
 def send_report_to_discord(webhook_url, report):
     data = {
@@ -75,7 +91,7 @@ if __name__ == "__main__":
 
     # Format the report without "CO Snow Report," "Mountain Activities," and "Open Terrain"
     # Display "Winter Park" above the results without an extra line
-    formatted_report = f"**Winter Park**\n{'\n'.join(winter_park_report)}"
+    formatted_report = f"**Winter Park Report**\n{'\n'.join(winter_park_report)}"
     print(formatted_report)
 
     send_report_to_discord(discord_webhook_url, formatted_report)
