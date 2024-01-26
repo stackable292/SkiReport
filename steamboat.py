@@ -27,16 +27,21 @@ def get_steamboat_conditions():
         total_trails = 181  # Static value
         total_lifts = 23  # Static value
 
+        # Construct the report with "/" replaced by "of"
         steamboat_report = (
             f"**Steamboat Report**:\n"
             f"Open Trails: {open_trails.replace('/', ' of ')} / {total_trails}\n"
             f"Open Lifts: {open_lifts.replace('/', ' of ')} / {total_lifts}"
         )
 
+        # Replace "/" with "of" in the report string
+        steamboat_report = steamboat_report.replace('/', ' of ')
+
         return steamboat_report
     finally:
         # Close the WebDriver
         driver.quit()
+
 
 def extract_statistic(html, label):
     # Parse the HTML content
