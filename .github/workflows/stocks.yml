@@ -2,7 +2,7 @@ name: Stocks
 
 on:
   schedule:
-    - cron: '0 5 * * *'  # Run every minute
+    - cron: '0 1 * * *'  # Run @ 1am GMT or 7pm MST
 
 jobs:
   run-script:
